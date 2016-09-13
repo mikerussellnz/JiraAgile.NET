@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="AgileClient.cs" />
     <Compile Include="AgileRestClient.cs" />
+    <Compile Include="Comment.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="BacklogIssues.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Boards.cs" />
