@@ -47,6 +47,7 @@
     <Compile Include="AgileClient.cs" />
     <Compile Include="AgileRestClient.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="JiraServerException.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="BacklogIssues.cs" />
     <Compile Include="Board.cs" />
@@ -55,6 +56,7 @@
     <Compile Include="ListResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Issue.cs" />
+    <Compile Include="Response.cs" />
     <Compile Include="Sprint.cs" />
     <Compile Include="Issues.cs" />
     <Compile Include="Sprints.cs" />

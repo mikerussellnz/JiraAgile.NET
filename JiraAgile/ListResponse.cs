@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace JiraAgile {
-    public abstract class ListResponse {
+    public abstract class ListResponse : Response {
         public abstract IList GetItems();
     }
 

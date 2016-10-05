@@ -17,14 +17,14 @@ namespace JiraAgile {
             }
         }
 
-        internal T Execute<T>(RestRequest request) where T : new() {
+        internal T Execute<T>(RestRequest request) where T : Response, new() {
             preProcessRequest(request);
             var response = _restClient.Execute<T>(request);
             processResponse(response);
             return response.Data;
         }
         
-        internal async Task<T> ExecuteAsync<T>(RestRequest request, CancellationToken token) where T : new() {
+        internal async Task<T> ExecuteAsync<T>(RestRequest request, CancellationToken token) where T : Response {
             preProcessRequest(request);
             var response = await _restClient.ExecuteTaskAsync<T>(request, token).ConfigureAwait(false);
             processResponse(response);
@@ -35,7 +35,12 @@ namespace JiraAgile {
             request.AddParameter("maxResults", -1);
         }
 
-        private void processResponse<T>(IRestResponse<T> response) where T : new() {
+        private void processResponse<T>(IRestResponse<T> response) where T : Response {
+            Response serverResponse = response.Data;
+            if (serverResponse.StatusCode == 500) {
+                throw new JiraServerException("Server returned error", serverResponse.StatusCode, serverResponse.StackTrace);
+            }
+
             ListResponse list = response.Data as ListResponse;
             if (list != null) {
                 foreach (var item in list.GetItems()) {
